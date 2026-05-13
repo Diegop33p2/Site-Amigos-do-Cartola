@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Piruletas | Cartola</title>
+    <style>
+        /* === PADRÃO GE CARTOLA (DARK & ORANGE) === */
+        :root {
+            --ge-dark: #0f0f0f;
+            --ge-darker: #0a0a0a;
+            --ge-card: #1c1c1c;
+            --ge-orange: #ff6600;
+            --ge-orange-hover: #e55c00;
+            --ge-text: #ffffff;
+            --ge-gray: #a0a0a0;
+            --ge-border: #333333;
+            --gold: #f1c40f;
+            --red-bagre: #d93025;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: var(--ge-darker);
+            color: var(--ge-text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === NAVBAR === */
+        .navbar {
+            background-color: var(--ge-dark);
+            border-bottom: 3px solid var(--ge-orange);
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--ge-text);
+            text-transform: uppercase;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--ge-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--ge-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ge-orange);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--ge-dark) 0%, var(--ge-darker) 100%);
+            border-bottom: 1px solid var(--ge-border);
+        }
+
+        .hero-banner-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.15);
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: var(--ge-orange);
+        }
+
+        /* === SEÇÕES === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--ge-border);
+            padding-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .section-header .badge {
+            background-color: var(--ge-orange);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* === CARDS DOS JOGADORES === */
+        .grid-jogadores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card-jogador {
+            background-color: var(--ge-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--ge-border);
+            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+        }
+
+        .card-jogador:hover {
+            transform: translateY(-5px);
+            border-color: var(--ge-orange);
+        }
+
+        .card-destaque {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: linear-gradient(90deg, #1f140d 0%, var(--ge-card) 100%);
+            border: 1px solid var(--ge-orange);
+        }
+
+        .card-header {
+            background-color: var(--ge-dark);
+            height: 80px;
+            position: relative;
+            border-bottom: 1px solid var(--ge-border);
+        }
+
+        .card-destaque .card-header {
+            height: auto;
+            background: transparent;
+            border: none;
+            padding: 30px;
+        }
+
+        /* === ESTILOS DOS AVATARES (FOTOS) === */
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--ge-card);
+            position: absolute;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333; 
+            object-fit: cover;
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            transition: transform 0.3s ease, border-color 0.3s;
+            z-index: 2;
+        }
+
+        /* Efeito ao passar o mouse na foto */
+        .avatar:hover {
+            border-color: var(--ge-orange);
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .card-destaque .avatar {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            width: 150px;
+            height: 150px;
+            border-color: var(--ge-orange);
+        }
+        
+        .card-destaque .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 55px 20px 20px;
+            text-align: center;
+        }
+
+        .card-destaque .card-body {
+            padding: 30px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .nome {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .card-destaque .nome {
+            justify-content: flex-start;
+            font-size: 2rem;
+            color: var(--ge-orange);
+        }
+
+        .bio {
+            font-size: 0.9rem;
+            color: var(--ge-gray);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .titulos-lista {
+            list-style: none;
+            margin-top: 15px;
+            border-top: 1px solid var(--ge-border);
+            padding-top: 15px;
+            text-align: left;
+        }
+
+        .titulos-lista li {
+            font-size: 0.85rem;
+            color: var(--ge-text);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* === MURAL DA VERGONHA === */
+        .vergonha-badge {
+            background-color: var(--red-bagre) !important;
+        }
+        
+        .card-bagre {
+            border-color: #3a1515;
+            background-color: #1a0f0f;
+        }
+
+        .card-bagre .avatar {
+            filter: grayscale(100%);
+            border-color: var(--red-bagre);
+        }
+        
+        .card-bagre .avatar:hover {
+            filter: grayscale(0%); /* Revela a cor ao passar o mouse na foto do bagre */
+            border-color: var(--red-bagre);
+        }
+
+        .card-bagre h3 {
+            color: var(--red-bagre);
+        }
+
+        /* === PREMIAÇÃO === */
+        .painel-premiacao {
+            background-color: var(--ge-card);
+            border: 1px solid var(--ge-border);
+            border-left: 5px solid var(--ge-orange);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .premio-item {
+            text-align: center;
+        }
+
+        .premio-label {
+            color: var(--ge-gray);
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .premio-valor {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #4CAF50;
+        }
+
+        /* === MODAL DE IMAGEM (LIGHTBOX) === */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Fundo escuro transparente */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0; /* Começa invisível */
+            visibility: hidden; /* Não interativo por padrão */
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(5px); /* Efeito embaçado no fundo */
+            cursor: zoom-out; /* Ícone de diminuir zoom ao passar no fundo */
+        }
+
+        .modal.ativo {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-conteudo {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+            border: 3px solid var(--ge-orange);
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.4);
+            transform: scale(0.7); /* Começa menor */
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        .modal.ativo .modal-conteudo {
+            transform: scale(1); /* Cresce quando ativa */
+        }
+
+        @media (max-width: 768px) {
+            .card-destaque {
+                flex-direction: column;
+                text-align: center;
+            }
+            .card-destaque .card-header { padding: 20px 20px 0; }
+            .card-destaque .card-body { text-align: center; padding: 20px; }
+            .card-destaque .nome { justify-content: center; }
+            .titulos-lista { text-align: center; }
+            .titulos-lista li { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="img/WhatsApp Image 2026-05-08 at 10.14.36(1).jpeg" alt="TP" class="nav-logo" onerror="this.style.display='none'">
+            The Piruletas
+        </div>
+        <div class="nav-links">
+            <a href="#campeoes">Campeões</a>
+            <a href="#bagres">Bagres</a>
+            <a href="#regras">Premiação</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <img src="img/1778248101337.png" alt="A Dinastia do Diego" class="hero-banner-img" style="background-color: #333; height: 300px; display: flex; align-items: center; justify-content: center; color: #555;">
+        <h1>A Lenda <span>Continua</span></h1>
+        <p style="color: var(--ge-gray); max-width: 600px; margin-top: 10px;">O portal oficial do grupo mais competitivo (e resenheiro) do Cartola FC.</p>
+    </header>
+
+    <section id="campeoes" class="container">
+        <div class="section-header">
+            <h2>Hall da Fama</h2>
+            <span class="badge">A ELITE</span>
+        </div>
+
+        <div class="grid-jogadores">
+            
+            <div class="card-jogador card-destaque">
+                <div class="card-header">
+                    <img src="URL_DA_SUA_FOTO_AQUI" alt="Diego" class="avatar">
+                </div>
+                <div class="card-body">
+                    <h3 class="nome">Diego 🐪</h3>
+                    <p class="bio">O mestre tático. Destrói nos gramados às terças e sextas, e agora amassa no Cartola construindo uma dinastia.</p>
+                    <ul class="titulos-lista">
+                        <li>🏆 <strong>Liga Cartola:</strong> 2023, 2024</li>
+                        <li>🏆 <strong>Copa Cartola:</strong> 1ª Edição 2024</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-jogador">
+                <div class="card-header">
+                    <img src="URL_DA_FOTO_DO_BOLA" alt="Bola" class="avatar">
+                </div>
+                <div class="card-body">
+                    <h3 class="nome">Bola 🦍</h3>
+                    <ul class="titulos-lista">
+                        <li>🏆 <strong>2ª Copa Cartola:</strong> 2025</li>
+                        <li>🏆 <strong>3ª Copa Cartola:</strong> 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-jogador">
+                <div class="card-header">
+                    <img src="URL_DA_FOTO_DO_KAIO" alt="Kaio" class="avatar">
+                </div>
+                <div class="card-body">
+                    <h3 class="nome">Kaio 🦌</h3>
+                    <ul class="titulos-lista">
+                        <li>🏆 <strong>Liga Cartola:</strong> 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-jogador">
+                <div class="card-header">
+                    <img src="URL_DA_FOTO_DO_SIRI" alt="Siri" class="avatar">
+                </div>
+                <div class="card-body">
+                    <h3 class="nome">Siri 🦀</h3>
+                    <ul class="titulos-lista">
+                        <li>🏆 <strong>4ª Copa Cartola:</strong> 2026</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="bagres" class="container">
+        <div class="section-header" style="border-bottom-color: #3a1515;">
+            <h2 style="color: var(--red-bagre);">Mural da Vergonha</h2>
+            <span class="badge vergonha-badge">OS BAGRES</span>
+        </div>
+
+        <div class="grid-jogadores" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            
+            <div class="card-jogador card-bagre">
+                <div class="card-header">
+                    <img src="img/WhatsApp Image 2026-05-08 at 10.14.36.jpeg" alt="Mark" class="avatar">
+                </div>
+                <div class="card-body">
+                    <h3 class="nome">Mark 🐷</h3>
+                    <p class="bio">0 Títulos. Participação figurativa.</p>
+                </div>
+            </div>
+
+            <div class="card-jogador card-bagre">
+                <div class="card-header">
+                    <img src="URL_DA_FOTO_DO_YAGO" alt="Yago" class="avatar">
+                </div>
+                <div class="card-body">
+                    <h3 class="nome">Yago 🐃</h3>
+                    <p class="bio">0 Títulos. Ajuda a pagar a premiação.</p>
+                </div>
+            </div>
+
+            <div class="card-jogador card-bagre">
+                <div class="card-header">
+                    <img src="URL_DA_FOTO_DO_PATO" alt="Pato" class="avatar">
+                </div>
+                <div class="card-body">
+                    <h3 class="nome">Pato 🦆</h3>
+                    <p class="bio">0 Títulos. Freguesia garantida.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="regras" class="container">
+        <div class="section-header">
+            <h2>Premiação da Temporada</h2>
+            <span class="badge">O PIX CANTA</span>
+        </div>
+        
+        <div class="painel-premiacao">
+            <div class="premio-item">
+                <div class="premio-label">Ganhador da Copa 🏆</div>
+                <div class="premio-valor">R$ 25</div>
+            </div>
+            <div class="premio-item">
+                <div class="premio-label">Ganhador da Liga 🎩</div>
+                <div class="premio-valor">R$ 105</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-imagem" class="modal">
+        <img id="imagem-ampliada" class="modal-conteudo" src="" alt="Imagem Ampliada">
+    </div>
+
+    <script>
+        // Pega os elementos do HTML
+        const modal = document.getElementById('modal-imagem');
+        const imagemAmpliada = document.getElementById('imagem-ampliada');
+        const avatares = document.querySelectorAll('.avatar');
+
+        // Adiciona um evento de clique para CADA foto (avatar)
+        avatares.forEach(foto => {
+            foto.addEventListener('click', function() {
+                // Pega a URL da foto clicada e joga na imagem grande do modal
+                imagemAmpliada.src = this.src;
+                // Adiciona a classe 'ativo' para o modal aparecer na tela
+                modal.classList.add('ativo');
+            });
+        });
+
+        // Adiciona um evento de clique no próprio modal para fechar
+        modal.addEventListener('click', function(evento) {
+            // Se clicar em qualquer lugar que seja o fundo do modal ou na foto, remove a classe 'ativo'
+            modal.classList.remove('ativo');
+        });
+    </script>
+
+</body>
+</html>
