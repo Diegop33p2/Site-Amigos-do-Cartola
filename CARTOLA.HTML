@@ -11,13 +11,14 @@
 
     <nav class="navbar">
         <div class="nav-brand">
-            <img src="img/WhatsApp Image 2026-05-08 at 10.14.36(1).jpeg" alt="TP" class="nav-logo" onerror="this.style.display='none'">
+            <img src="img/iaMark.jpeg" alt="TP" class="nav-logo" onerror="this.style.display='none'">
             The Piruletas 🍭​
         </div>
         <div class="nav-links">
             <a href="#campeoes">Campeões</a>
             <a href="#bagres">Bagres</a>
             <a href="#zoeira">Zoeira</a>
+            <a href="#tabela">Tabela</a>
             <a href="#regras">Premiação</a>
         </div>
     </nav>
@@ -26,7 +27,7 @@
         <div class="hero-content">
             <div class="hero-tag">CARTOLA FC 🎩&middot; BRASILEIRÃO 2026</div>
             <h1>The <span>Piruletas</span></h1>
-            <p>O portal oficial do grupo mais competitivo (e autista) do Cartola FC.</p>
+            <p>O portal oficial do grupo mais competitivo e autista do Cartola FC.</p>
             <div class="hero-stats">
                 <div class="stat-item">
                     <div class="stat-num">8</div>
@@ -62,22 +63,23 @@
             
             <div class="card-jogador card-destaque">
                 <div class="card-header">
+                    <audio id="som-diego" src="audio/mark_dp2.ogg"></audio>
                     <img src="img/Diego.jpg" alt="diego" class="avatar">
                 </div>
                 <div class="card-body">
                     <h3 class="nome">Diego 🐫​</h3>
-                    <p class="bio">O mestre tático. O maior campeão, parou no tempo, será?... Dinastia.</p>
+                    <p class="bio">O maior campeão, parou no tempo, será?... Dinastia.</p>
                     <ul class="titulos-lista">
                         <li>🏆 <strong>Liga Cartola:</strong> 2023, 2024</li>
                         <li>🏆 <strong>Copa Cartola:</strong> 1ª Edição 2024</li>
                     </ul>
-                    <audio id="som-diego" src="audio/eu sou o milior cr7 - duda (youtube).mp3"></audio>
                 </div>
             </div>
 
             <div class="card-jogador">
+                <audio id="som-bola" src="audio/gordao.ogg"></audio>
                 <div class="card-header">
-                    <img src="URL_DA_FOTO_DO_BOLA" alt="Bola" class="avatar">
+                    <img src="img/Gordão.jpg" alt="bola" class="avatar">
                 </div>
                 <div class="card-body">
                     <h3 class="nome">Ângelo (Bola) 🦍</h3>
@@ -92,11 +94,11 @@
             <div class="card-jogador">
                 <audio id="som-kaio" src="audio/Mark_youtube.opus"></audio>
                 <div class="card-header">
-                    <img src="URL_DA_FOTO_DO_KAIO" alt="kaio" class="avatar">
+                    <img src="img/Kaio.jpg" alt="kaio" class="avatar">
                 </div>
                 <div class="card-body">
                     <h3 class="nome">Kaio 🦄</h3>
-                    <p class="bio">2 Títulos. ▶️YouTube men, será?</p>
+                    <p class="bio">1 Título. ▶️YouTube men, será?</p>
                     <ul class="titulos-lista">
                         <li>🏆 <strong>Liga Cartola:</strong> 2025</li>
                     </ul>
@@ -105,6 +107,7 @@
 
             <div class="card-jogador">
                 <div class="card-header">
+                    <audio id="som-siri" src="audio/Siri.ogg"></audio>
                     <img src="img/Siri.jpg" alt="Siri" class="avatar">
                 </div>
                 <div class="card-body">
@@ -139,8 +142,9 @@
             </div>
 
             <div class="card-jogador card-bagre">
+                <audio id="som-yago" src="audio/Yago.ogg"></audio>
                 <div class="card-header">
-                    <img src="URL_DA_FOTO_DO_YAGO" alt="Yago" class="avatar">
+                    <img src="img/Yago.jpg" alt="Yago" class="avatar">
                 </div>
                 <div class="card-body">
                     <h3 class="nome">Yago 🐃</h3>
@@ -150,17 +154,17 @@
 
             <div class="card-jogador card-bagre">
                 <div class="card-header">
-                    <img src="URL_DA_FOTO_DO_PATO" alt="Pato" class="avatar">
+                    <img src="img/Pato.jpg" alt="Pato" class="avatar">
                 </div>
                 <div class="card-body">
                     <h3 class="nome">Pato 🦆</h3>
-                    <p class="bio">0 Títulos. Freguesia garantida e brasiliense safado.</p>
+                    <p class="bio">0 Títulos. Freguesia garantida e brasiliense safado, nessa temporada ele largou.</p>
                 </div>
             </div>
 
             <div class="card-jogador card-bagre">
                 <div class="card-header">
-                    <img src="URL_DA_FOTO_DO_PREGO" alt="Pato" class="avatar">
+                    <img src="img/Prego.jpg" alt="Pato" class="avatar">
                 </div>
                 <div class="card-body">
                     <h3 class="nome">Prego 🦓​</h3>
@@ -230,7 +234,32 @@
         </div>
     </section>
 
-    <section id="regras" class="container">
+<!-- TABELA DO CARTOLA (MODO ESTÁTICO) -->
+<section id="tabela" class="container">
+    <div class="section-header" style="border-bottom-color: orangered">
+        <h2 style="color:orangered;">Tabela Oficial da Liga Clássica 📈</h2>
+        <span class="badge" style="background-color: orangered;">ATUALIZADA</span>
+    </div>
+
+    <div class="tabela-container">
+        <table class="tabela-cartola">
+            <thead>
+                <tr>
+                    <th>Pos</th>
+                    <th>Clube</th>
+                    <th>Cartoleiro</th>
+                    <th>Rodada</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="corpo-tabela">
+                <!-- O JavaScript vai injetar os guerreiros e bagres aqui -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="regras" class="container">
         <div class="section-header">
             <h2>Premiação da Temporada</h2>
             <span class="badge">O PIX CANTA</span>
@@ -264,7 +293,6 @@
 
     <!-- <audio id="som-campeao" src="audio/eu sou o milior cr7 - duda (youtube).mp3"></audio> -->
     <!-- <audio id="som-bagre" src="audio/Música de gol da Fox Sports - Rian Paiva (youtube).mp3"></audio> -->
-
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-brand">The Piruletas 🍭​</div>

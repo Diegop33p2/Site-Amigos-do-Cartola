@@ -154,3 +154,51 @@ if (btnOraculo) {
         textoOraculo.innerText = previsoes[idx](nome1, nome2);
     });
 }
+
+/* === TABELA DOS PIRULETAS (ATUALIZAÇÃO MANUAL) === */
+
+function carregarTabelaEstatica() {
+    const tbody = document.getElementById('corpo-tabela');
+    
+    // Escudo padrão do Cartola (Você pode trocar pelo link da imagem do escudo real de cada um depois)
+    const escudoPadrao = "img/logo_liga.png";
+
+    // 🔴 ATUALIZE OS PONTOS AQUI TODA SEGUNDA-FEIRA 🔴
+    const piruletas = [
+        { time: "CR 100 CAPACIDADE", cartoleiro: "Diego 🐫", escudo: escudoPadrao, rodada: 94.48, total: 2082.95 },
+        { time: "AUDAZ33 F.C.", cartoleiro: "Bola 🦍",  escudo: escudoPadrao, rodada: 95.25, total: 1951.27 },
+        { time: "SEM CAPACIDADE FC", cartoleiro: "Kaio 🦄",  escudo: escudoPadrao, rodada: 79.50, total: 2064.72 },
+        { time: "SIRIREI", cartoleiro: "Siri 🦀",  escudo: escudoPadrao, rodada: 106.29, total: 2006.78 },
+        { time: "AREIA BARÇA F.C. 2.0", cartoleiro: "Mark 🐷",  escudo: escudoPadrao, rodada: 92.85, total: 1916.68 },
+        { time: "PK DELAS SPORT", cartoleiro: "Yago 🐃",  escudo: escudoPadrao, rodada: 109.03, total: 2042.03 },
+        // { time: "Nome do Time", cartoleiro: "Pato 🦆",  escudo: escudoPadrao, rodada: 30.50, total: 800.00 },
+        { time: "OS 100 CAPACIDADE", cartoleiro: "Prego 🦓", escudo: escudoPadrao, rodada: 69.00, total: 1923.10 }
+    ];
+
+    // O código ordena automaticamente do MAIOR para o MENOR total de pontos
+    const timesOrdenados = piruletas.sort((a, b) => b.total - a.total);
+    
+    tbody.innerHTML = ''; 
+
+    // Desenha a tabela na tela
+    timesOrdenados.forEach((jogador, index) => {
+        const linha = `
+            <tr>
+                <td class="posicao">${index + 1}º</td>
+                <td>
+                    <div class="time-info">
+                        <img src="${jogador.escudo}" alt="Escudo" class="escudo">
+                        <span>${jogador.time}</span>
+                    </div>
+                </td>
+                <td>${jogador.cartoleiro}</td>
+                <td class="pts-rodada">${jogador.rodada.toFixed(2)}</td>
+                <td class="pts-total">${jogador.total.toFixed(2)}</td>
+            </tr>
+        `;
+        tbody.innerHTML += linha;
+    });
+}
+
+// Roda a função quando o site abre
+carregarTabelaEstatica();

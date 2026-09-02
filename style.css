@@ -531,3 +531,73 @@
 }
 
 .footer-sub { font-size: 0.75rem; color: var(--ge-gray); }
+
+/* === TABELA DO CARTOLA EM TEMPO REAL === */
+/* === TABELA DO CARTOLA === */
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #1a1a1a; 
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    border: 1px solid #333;
+}
+
+.tabela-cartola {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+    text-align: left;
+    white-space: nowrap; 
+}
+
+.tabela-cartola th {
+    background-color: #2a2a2a;
+    padding: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: orangered; 
+    border-bottom: 2px solid orangered;
+}
+
+.tabela-cartola td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #333;
+    vertical-align: middle;
+}
+
+.tabela-cartola tr:hover {
+    background-color: #2c2c2c;
+    transition: background-color 0.3s;
+}
+
+.time-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.escudo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.posicao {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #4cd137; 
+}
+
+.pts-rodada {
+    color: #ffcc00; 
+    font-weight: bold;
+}
+
+.pts-total {
+    font-weight: bold;
+    color: #4cd137; 
+    font-size: 1.1rem;
+}
