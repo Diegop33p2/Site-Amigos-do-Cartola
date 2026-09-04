@@ -199,6 +199,20 @@ function carregarTabelaEstatica() {
         tbody.innerHTML += linha;
     });
 }
-
 // Roda a função quando o site abre
 carregarTabelaEstatica();
+/* === MENU MOBILE === */
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+
+// Abre/fecha o menu ao clicar no ícone
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('ativo');
+});
+
+// Esconde o menu automaticamente após clicar em um link
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('ativo');
+    });
+});

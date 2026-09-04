@@ -78,7 +78,20 @@
         .nav-links a:hover {
             color: var(--ge-orange);
         }
+/* Botão Mobile (Escondido no PC) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
 
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--ge-text);
+            transition: all 0.3s ease;
+        }
         /* =============================================
    HERO
    ============================================= */
@@ -443,17 +456,38 @@
             }
 
             /* 2. Empilha o Menu Superior */
+           /* 2. Configurações do Menu Mobile (Hambúrguer) */
             .navbar {
-                flex-direction: column;
-                padding: 15px;
-                gap: 15px;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 15px 5%;
+            }
+            .menu-toggle {
+                display: flex; /* Mostra o ícone no celular */
             }
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+                display: none; /* Esconde as opções por padrão */
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background-color: var(--ge-dark);
+                border-bottom: 3px solid var(--ge-orange);
+                padding: 0;
+            }
+            .nav-links.ativo {
+                display: flex; /* Classe ativada pelo clique */
             }
             .nav-links a {
-                font-size: 0.85rem;
+                padding: 15px 5%;
+                font-size: 1rem;
+                border-bottom: 1px solid var(--ge-border);
+                width: 100%;
+                text-align: left;
+            }
+            .nav-links a:last-child {
+                border-bottom: none;
             }
 
             /* 3. Ajusta o Hero Banner e Estatísticas */
