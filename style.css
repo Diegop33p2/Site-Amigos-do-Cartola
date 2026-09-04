@@ -432,7 +432,61 @@
             transform: scale(1); /* Cresce quando ativa */
         }
 
+   /* =========================================
+           📱 RESPONSIVIDADE TOTAL PARA CELULAR 
+           ========================================= */
         @media (max-width: 768px) {
+            /* 1. Bloqueia a rolagem horizontal */
+            body, html {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            /* 2. Empilha o Menu Superior */
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            /* 3. Ajusta o Hero Banner e Estatísticas */
+            /* 3. Ajusta o Hero Banner e Estatísticas */
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 40px 5%;
+            }
+            
+            .hero-stats {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* Força exatamente 2 colunas iguais */
+                gap: 20px 10px; /* Espaçamento entre as linhas e colunas */
+                padding: 20px;
+                width: 100%;
+            }
+            
+            .stat-item {
+                padding: 0 !important; /* Remove os espaçamentos tortos do PC */
+                width: 100%;
+            }
+            
+            .stat-divider {
+                display: none;
+            }
+            .hero-banner-img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+            }
+
+            /* 4. Ajustes Originais dos Cards (Mantidos) */
             .card-destaque {
                 flex-direction: column;
                 text-align: center;
