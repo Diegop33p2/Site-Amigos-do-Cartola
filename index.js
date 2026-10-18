@@ -216,3 +216,43 @@ navLinks.querySelectorAll('a').forEach(link => {
         navLinks.classList.remove('ativo');
     });
 });
+
+/* === EVOLUÇÃO DO MARK GOKU === */
+const imgMark = document.getElementById('img-mark-goku');
+const textoMark = document.getElementById('texto-mark-goku');
+
+// A lista com as 5 imagens (troque pelos nomes reais dos seus arquivos)
+const imagensEvolucao = [
+    "img/Mark.jpg",
+    "img/MARK/MARK1.jpg", 
+    "img/MARK/MARK2.jpg", 
+    "img/MARK/MARK4.jpg", 
+    "img/MARK/MARK5.jpg", 
+    "img/MARK/MARK3.jpg"
+];
+
+// As frases de zoeira que mudam junto com a imagem
+const frasesEvolucao = [
+    "Fase 0: Nasce o acefalo da bola...",
+    "Fase 1: O Início da Ilusão...",
+    "Fase 2: Treinando pesado pra ficar na lanterna",
+    "Fase 3: O Ki está aumentando! (Os pontos não)",
+    "Fase 4: O Instinto Superior do Z4!",
+    "Fase 5: Títulos ganhos: ZERO. Mas a pose tá linda! 🤡"
+];
+
+let faseAtual = 0; // Começa no zero (primeira imagem)
+
+imgMark.addEventListener('click', () => {
+    // Aumenta a fase
+    faseAtual++;
+    
+    // Se passar da fase 5, volta pra fase 1 (loop)
+    if (faseAtual >= imagensEvolucao.length) {
+        faseAtual = 0;
+    }
+    
+    // Atualiza a imagem e o texto na tela
+    imgMark.src = imagensEvolucao[faseAtual];
+    textoMark.textContent = frasesEvolucao[faseAtual];
+});
